@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBAlpQK6UqTt6lDC_VpW9J6GQalGWh0J-Q</string>
+	<key>GCM_SENDER_ID</key>
+	<string>767482347165</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.provafaculdadeexericios1511</string>
+	<key>PROJECT_ID</key>
+	<string>provafaculdadeexercicios1511</string>
+	<key>STORAGE_BUCKET</key>
+	<string>provafaculdadeexercicios1511.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:767482347165:ios:4a837b74cffd41643f5e74</string>
+</dict>
+</plist>

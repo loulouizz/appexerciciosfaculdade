@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "767482347165",
+    "project_id": "provafaculdadeexercicios1511",
+    "storage_bucket": "provafaculdadeexercicios1511.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767482347165:android:f50896783f82029d3f5e74",
+        "android_client_info": {
+          "package_name": "com.example.provafaculdadeexericios1511"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPB3LyKLrmx8Q3Opss7FMzt-JUuLhsLm0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
