@@ -1,8 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provafaculdadeexericios1511/data/exercise_data.dart';
 
 class AddExerciseListScreen extends StatefulWidget {
+
+  final String userId;
+
+  const AddExerciseListScreen({Key? key, required this.userId}) : super(key: key);
+
   @override
   _AddExerciseListScreenState createState() => _AddExerciseListScreenState();
 }
@@ -35,18 +41,22 @@ class _AddExerciseListScreenState extends State<AddExerciseListScreen> {
 
 
   void _saveExerciseList() async {
+    String userId = FirebaseAuth.instance.currentUser?.uid ?? '';
+
     Map<String, dynamic> exerciseListData = {
+      'userId': userId,
       'name': _listNameController.text,
       'exercises': _exercises.map((exercise) => exercise.toMap()).toList(),
     };
 
     try {
       await FirebaseFirestore.instance.collection('exercise_lists').add(exerciseListData);
-      Navigator.pop(context); // Retorna à tela anterior após adicionar a lista
+      Navigator.pop(context);
     } catch (e) {
       print("Erro ao salvar lista de exercícios: $e");
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -66,16 +76,31 @@ class _AddExerciseListScreenState extends State<AddExerciseListScreen> {
             SizedBox(height: 16.0),
             Text('Exercícios Adicionados: ${_exercises.length}'),
             Expanded(
-              child: ListView.builder(
-                itemCount: _exercises.length,
-                itemBuilder: (context, index) {
-                  var exercise = _exercises[index];
-                  return ListTile(
-                    title: Text(exercise.name),
-                    subtitle: Text('Repetições: ${exercise.repetitions}, Séries: ${exercise.series}, Carga: ${exercise.load}'),
-                  );
+              child: FutureBuilder(
+                future: FirebaseFirestore.instance.collection('exercise_lists').where('userId', isEqualTo: widget.userId).get(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text('Erro: ${snapshot.error}');
+                  } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                    return Text('Nenhuma lista encontrada.');
+                  } else {
+                    return ListView.builder(
+                      itemCount: _exercises.length,
+                      itemBuilder: (context, index) {
+                        var exercise = _exercises[index];
+                        return ListTile(
+                          title: Text(exercise.name),
+                          subtitle: Text('Repetições: ${exercise.repetitions}, Séries: ${exercise.series}, Carga: ${exercise.load}'),
+                        );
+                      },
+                    );
+                  }
                 },
-              ),
+              )
+
+              /**/,
             ),
             SizedBox(height: 16.0),
             TextFormField(

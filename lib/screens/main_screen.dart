@@ -35,7 +35,7 @@ class _MainScreenState extends State<MainScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => AddExerciseListScreen(),
+              builder: (context) => AddExerciseListScreen(userId: widget.userId,),
             ),
           );
         },
